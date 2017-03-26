@@ -1,0 +1,123 @@
+@import 'variables'
+
+.container
+.wide-container
+    margin-right auto
+    margin-left auto
+
+
+.row
+    box-sizing border-box
+    display -webkit-box
+    display -ms-flexbox
+    display flex
+    -webkit-box-flex 0
+    -ms-flex 0 1 auto
+    flex 0 1 auto
+    -webkit-box-orient horizontal
+    -webkit-box-direction normal
+    -ms-flex-direction row
+    flex-direction row
+    -ms-flex-wrap wrap
+    flex-wrap wrap
+    margin-right -0.5rem
+    margin-left -0.5rem
+
+
+.no-gutter
+    & div
+        padding-right 0
+        padding-left 0
+
+
+for bp in breakpoints
+
+    if bp == xs
+        bp_name = 'xs'
+    else if bp == sm
+        bp_name = 'sm'
+    else if bp == md
+        bp_name = 'md'
+    else if bp == lg
+        bp_name = 'lg'
+    else if bp == xl
+        bp_name = 'xl'
+
+    @media screen and (min-width bp)
+        .container
+            if bp == xs
+                width 100%
+            else
+                width bp
+
+        .wide-container
+            if bp == xs
+                padding-right 0
+                padding-left 0
+            else
+                padding-right 2rem
+                padding-left 2rem
+        
+        for i in (0..12)
+            if i==0
+                .{bp_name}
+                    {column}                 
+                    -webkit-box-flex 1
+                    -ms-flex-positive 1
+                    flex-grow 1
+                    -ms-flex-preferred-size 0
+                    flex-basis 0
+                    max-width 100%
+            else
+                .{bp_name}-{i}
+                    {column}
+                    c-width (100%/12*i)
+
+            .{bp_name}-push-{i}
+                margin-left (100%/12*i)
+        
+        .{bp_name}-hide
+            display none
+
+        .{bp_name}-left
+            h-align start flex-start
+        
+        .{bp_name}-center
+            h-align center center
+        
+        .{bp_name}-right
+            h-align end flex-end
+        
+        .{bp_name}-top
+            v-align start flex-start
+        
+        .{bp_name}-middle
+            v-align center center
+        
+        .{bp_name}-bottom
+            v-align end flex-end
+        
+        .{bp_name}-stretch
+            v-align stretch stretch
+        
+        .{bp_name}-around
+            -ms-flex-pack distribute
+            justify-content space-around
+        
+        .{bp_name}-between
+            -webkit-box-pack justify
+            -ms-flex-pack justify
+            justify-content space-between
+
+        
+        .{bp_name}-first
+            -webkit-box-ordinal-group 0
+            -ms-flex-order -1
+            order -1
+
+        
+        .{bp_name}-last
+            -webkit-box-ordinal-group 2
+            -ms-flex-order 1
+            order 1
+

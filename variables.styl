@@ -1,0 +1,42 @@
+//----------BREAKPOINTS----------\\.
+xs = 0px
+sm = 544px
+md = 768px
+lg = 992px
+xl = 1200px
+breakpoints = xs,sm,md,lg,xl
+
+
+//----------GUTTER----------\\.
+gutter = 0.75rem      // 12px
+
+
+//----------BLOCK----------\\.
+column = @block {
+    display block
+    box-sizing border-box
+    -webkit-box-flex 0
+    -ms-flex 0 0 auto
+    flex 0 0 auto
+    padding-right (gutter/2)
+    padding-left (gutter/2)
+}
+
+
+//----------MIXIN----------\\.
+c-width(w) 
+  -ms-flex-preferred-size w
+  flex-basis w
+  max-width w
+
+h-align(p p-justify)
+  -webkit-box-pack p
+  -ms-flex-pack p
+  justify-content p-justify
+  text-align p
+
+v-align(p p-align)
+  -webkit-box-align p
+  -ms-flex-align p
+  align-items p-align
+
